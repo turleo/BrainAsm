@@ -5,8 +5,10 @@ entry main
 main:
   mov r12, code   ; r12 -- code pointer
   dec r12
-  mov r13, memory ; r13 -- data pointer
-  
+  mov rsi, 30000  ; memory size
+  call allocate
+  mov r13, rax    ; r13 -- data pointer
+
 main_loop:
   inc r12
   mov rax, [r12]
@@ -60,8 +62,9 @@ quit:
   syscall
   ret
 
+include "memory_allocator.asm"
+
 segment readable writable
 code db "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.", 0
 output db 0
-memory:
-  times 30000 db 0
+

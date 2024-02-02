@@ -1,4 +1,4 @@
-# 🤯 Brainfuck interpreter 
+# 🤯 BrainAsm 
 
 A very simple [brainfuck](https://en.wikipedia.org/wiki/Brainfuck) interpreter written in flat assembly language.
 
@@ -20,4 +20,4 @@ And to execute run
 - [ ] `.` command
 - [ ] `,` command
 - [ ] reading source code from file
-- [ ] allocating memory dynamically
+- [x] allocating memory dynamically
