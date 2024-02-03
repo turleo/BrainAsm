@@ -28,9 +28,9 @@
   call allocate
 
   mov rsi, rax        ; buffer
-  push rsi            ; code pointer
   pop rdx             ; count
   pop rdi             ; fd
   mov rax, 0          ; read syscall
+  push rsi            ; code pointer
   syscall
 
