@@ -3,7 +3,8 @@ format ELF64 executable
 segment readable executable
 entry main
 main:
-  mov r12, code   ; r12 -- code pointer
+include "file_reader.asm"
+  pop r12         ; r12 -- code pointer
   dec r12
   mov rsi, 30000  ; memory size
   call allocate
@@ -65,6 +66,5 @@ quit:
 include "memory_allocator.asm"
 
 segment readable writable
-code db "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.", 0
 output db 0
 

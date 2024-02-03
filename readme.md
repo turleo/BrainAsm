@@ -19,5 +19,6 @@ And to execute run
 - [x] `[]` commands
 - [ ] `.` command
 - [ ] `,` command
-- [ ] reading source code from file
+- [x] reading source code from file
 - [x] allocating memory dynamically
+
