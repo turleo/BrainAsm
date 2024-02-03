@@ -3,7 +3,7 @@ format ELF64 executable
 segment readable executable
 entry main
 main:
-include "file_reader.asm"
+include "utils/code_reader.asm"
   pop r12         ; r12 -- code pointer
   dec r12
   mov rsi, 30000  ; memory size
@@ -32,30 +32,11 @@ main_loop:
 
   jmp main_loop
   
-inc_instruction: ; +
-  inc byte [r13]
-  jmp main_loop
-dec_instruction: ; -
-  dec byte [r13]
-  jmp main_loop
-inc_data_instruction: ; >
-  inc r13
-  jmp main_loop
-dec_data_instruction: ; <
-  dec r13
-  jmp main_loop
+include "characters_handlers/number_handlers.asm" ; +-
+include "characters_handlers/pointer_handlers.asm" ; <>
+include "characters_handlers/brackets_handlers.asm" ; []
+include "characters_handlers/io_handlers.asm"       ; .,
 
-include "brackets_handler.asm"
-
-print_data_instruction: ; .
-  mov rdx, [r13]
-  mov [output], dl
-  mov rax, 1
-  mov rdi, 1
-  mov rsi, output
-  mov rdx, 1
-  syscall
-  jmp main_loop
 
 quit:
   mov rdi, 0
@@ -63,7 +44,7 @@ quit:
   syscall
   ret
 
-include "memory_allocator.asm"
+include "utils/memory_allocator.asm"
 
 segment readable writable
 output db 0
