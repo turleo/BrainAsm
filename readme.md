@@ -4,20 +4,19 @@ A very simple [brainfuck](https://en.wikipedia.org/wiki/Brainfuck) interpreter w
 
 ## Usage
 
-Source code is being stored in (main.asm) on line 64.
 To compile this code, simply run
-```
+```shell
 fasm main.asm
 ```
 And to execute run
-```
-./main
+```shell
+./main {filename}
 ```
 
 ## Todo list
 - [x] `+-><` commands
 - [x] `[]` commands
-- [ ] `.` command
+- [x] `.` command
 - [ ] `,` command
 - [x] reading source code from file
 - [x] allocating memory dynamically
