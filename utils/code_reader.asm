@@ -25,6 +25,7 @@
 
   mov rsi, [rax + 48] ; size of file
   push rsi
+  inc rsi
   call allocate
 
   mov rsi, rax        ; buffer

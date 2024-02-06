@@ -10,8 +10,8 @@ ignore_brackets:
   xor rcx, rcx
 
 ignore_brackets_loop:
-  inc r12
   mov rax, [r12]
+  inc r12
   cmp al, '['
   je bracket_open
   cmp al, ']'
