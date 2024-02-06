@@ -10,13 +10,13 @@ ignore_brackets:
   xor rcx, rcx
 
 ignore_brackets_loop:
-  mov rax, [r12]
+  mov rax, [r12]    ; check current character
   inc r12
   cmp al, '['
   je bracket_open
   cmp al, ']'
   je bracket_close
-  cmp al, 0
+  cmp al, 0         ; file ended
   je quit
   jmp ignore_brackets_loop
 
@@ -28,7 +28,7 @@ bracket_close:
   jmp check_if_ignore_brackets_loop_end
 
 check_if_ignore_brackets_loop_end:
-  test rcx, rcx
+  test rcx, rcx             ; if rcx is 0 all opened brackets are closed
   jz main_loop
   jnz ignore_brackets_loop
 
@@ -41,7 +41,6 @@ end_bracket:
   push r12
   jmp main_loop
 end_to_main_loop:
-  ;add rsp, 8
   pop rcx
   jmp main_loop
 

@@ -32,17 +32,20 @@ main_loop:
 
   jmp main_loop
   
-include "characters_handlers/number_handlers.asm" ; +-
-include "characters_handlers/pointer_handlers.asm" ; <>
+include "characters_handlers/number_handlers.asm"   ; +-
+include "characters_handlers/pointer_handlers.asm"  ; <>
 include "characters_handlers/brackets_handlers.asm" ; []
 include "characters_handlers/io_handlers.asm"       ; .,
 
 
 quit:
   mov rdi, 0
-  mov rax,  60
+  mov rax,  60     ; exit
   syscall
-  ret
+error:
+  mov rdi, rax     ; (syscall's errors are allways in rax)
+  mov rax,  60     ; exit
+  syscall
 
 include "utils/memory_allocator.asm"
 

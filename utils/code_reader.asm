@@ -5,7 +5,7 @@
   syscall
 
   cmp rax, 0
-  jl quit
+  jl error
 
   push rax            ; fd
 
@@ -19,13 +19,13 @@
   syscall
 
   cmp rax, 0
-  jl quit
+  jl error
 
   pop rax             ; struct stat
 
   mov rsi, [rax + 48] ; size of file
   push rsi
-  inc rsi
+  inc rsi             ; if we allocate one byte more memory, the last byte allways will be 0
   call allocate
 
   mov rsi, rax        ; buffer
